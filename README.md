@@ -57,14 +57,16 @@ To update database after modifing the schema file:
 - Remove old `prisma/dev.db`
 - Run `npx prisma db push` to create database file
 
-## Deploy
-```
-cd dashboard-frontend
-yarn build
+## Deploy Dashboard
 
-cd ../dashboard-backend
-podman run --rm -it -e PORT=8000 -e DATABASE_URL="file:/dev.db" -p 8000:8000 -v "`pwd`:/app" -w /app node:18-alpine sh -c "npm run db:init && npm run dev"
+Remember to set `API_KEY` with `docker run`, or it will be random
+
+```sh
+docker build -t dashboard -f Dockerfile.dashboard .
+docker run -p 127.0.0.1:5000:5000 -e API_KEY="<API_KEY>" -e BADGE_DATABASE_URL="<BADGE_DATABASE_URL>" dashboard
 ```
+
+You can mount `/db` in container to store database in host
 
 ## Docs
 

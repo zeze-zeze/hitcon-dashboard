@@ -1,14 +1,14 @@
 FROM node:18-alpine as builder
 COPY . /app
-WORKDIR /app/dashboard-frontend
+WORKDIR /app/frontend
 RUN yarn install
 RUN yarn build
 
-WORKDIR /app/dashboard-backend
+WORKDIR /app/backend
 RUN npm install
 
 FROM node:18-alpine
-COPY --from=builder /app/dashboard-backend /app
+COPY --from=builder /app/backend /app
 WORKDIR /app
 
 ENV DATABASE_URL="file:/db/prod.db"
