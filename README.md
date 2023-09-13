@@ -1,4 +1,5 @@
-# Dashboard Backend
+# HITCON Dashboard
+The HITCON dashboard serves as a scorekeeping tool designed to aggregate data from each event within HITCON CMT 2023. This data is then organized into a table format for display on a website.
 
 ## Quick Start
 
